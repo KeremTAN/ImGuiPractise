@@ -3,43 +3,75 @@
 
 inline void task_4() {
     ImGui::Begin("Hotel");
-    if(ImGui::TreeNode("Info")) {
+    if(ImGui::TreeNode("Hotel Olala")) {
         bool isMeal = false;
         ImGui::TextWrapped("Text Wrapped Ne?");
         ImGui::Separator(); // for line
 
-        ImGui::MenuItem("Info", "CTRL+I");
-        
-        if(ImGui::BeginMenu("Foods")){
-            if(ImGui::MenuItem("Meals")) {
-            }
-            if(ImGui::MenuItem("Vegetables")) {}
-            if(ImGui::MenuItem("Pastas")) {}
-            if(ImGui::BeginMenu("Drinks")) {
-                if(ImGui::BeginMenu("Alcohols")) {
-                    ImGui::MenuItem("Coctail");
+        ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
+        if (ImGui::BeginTabBar("MyTabBar", tab_bar_flags)) {
+            if (ImGui::BeginTabItem("Information")) {
+                if(ImGui::BeginMenu("Foods")) {
+                    if(ImGui::MenuItem("Meals")) {}
+                    if(ImGui::MenuItem("Vegetables")) {}
+                    if(ImGui::MenuItem("Pastas")) {}
+                    if(ImGui::BeginMenu("Drinks")) {
+                        if(ImGui::BeginMenu("Alcohols")) {
+                            ImGui::MenuItem("Coctail");
+                            ImGui::EndMenu();
+                        }
+                        if(ImGui::BeginMenu("Softs")) {
+                            ImGui::MenuItem("Soda");
+                            ImGui::EndMenu();
+                        }
+                        ImGui::EndMenu();
+                    } // Drinks
                     ImGui::EndMenu();
+                } // Foods
+                if(ImGui::BeginMenu("Travel Points")) {
+                    ImGui::MenuItem("Show Travel Points On Map", "CTRL+M");
+                    ImGui::EndMenu();
+                } // Travel Points
+                ImGui::EndTabItem();
+            } // Information 
+            if (ImGui::BeginTabItem("Rezervation")) {
+                ImGui::Text("There are no rooms left in the hotel");
+                ImGui::EndTabItem();
+            } // Rezervation
+            ImGui::EndTabBar();
+        } // MyTabBar
 
-                }
-                if(ImGui::BeginMenu("Softs")) {
-                    ImGui::MenuItem("Soda");
-                    ImGui::EndMenu();
-                }
-                ImGui::EndMenu();
-            }
-            ImGui::EndMenu();
-        }
-        ImGui::MenuItem("Travel Points", "CTRL+T");
         ImGui::TreePop();
-    }
+    } // Information
     ImGui::End();
 
-    ImGui::Begin("Warning");
-    if(ImGui::TreeNode("About Foods")) {
-        ImGui::Text("There is not meal");
-        ImGui::TreePop();
-    }
-    ImGui::End();
+    // ImGui::Begin("Warning");
+    //     if (ImGui::TreeNode("Basic"))
+    //     {
+    //         ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
+    //         if (ImGui::BeginTabBar("MyTabBar", tab_bar_flags))
+    //         {
+    //             if (ImGui::BeginTabItem("Avocado"))
+    //             {
+    //                 ImGui::Text("This is the Avocado tab!\nblah blah blah blah blah");
+    //                 ImGui::EndTabItem();
+    //             }
+    //             if (ImGui::BeginTabItem("Broccoli"))
+    //             {
+    //                 ImGui::Text("This is the Broccoli tab!\nblah blah blah blah blah");
+    //                 ImGui::EndTabItem();
+    //             }
+    //             if (ImGui::BeginTabItem("Cucumber"))
+    //             {
+    //                 ImGui::Text("This is the Cucumber tab!\nblah blah blah blah blah");
+    //                 ImGui::EndTabItem();
+    //             }
+    //             ImGui::EndTabBar();
+    //         }
+    //         ImGui::Separator();
+    //         ImGui::TreePop();
+    //     }
+    // ImGui::End();
     
 }
 
