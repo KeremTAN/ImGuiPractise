@@ -3,6 +3,8 @@
 #include "../imgui/imgui.h"
 #include "../imgui/imgui_impl_glfw.h"
 #include "../imgui/imgui_impl_opengl3.h"
+#include "../imgui/ImGuiFileDialog.h"
+#include "../imgui/ImGuiFileDialogConfig.h"
 
 #include <GLFW/glfw3.h>
 
@@ -20,9 +22,9 @@ public:
         glfwTerminate();
     };
 
-    inline static void run(const std::string& panelName, void(*task)(), const PanelColorType&& panelColor = PanelColorType::Dark) {
+    inline static void run(const std::string& panelName, void(*task)(), const PanelColorType&& panelColor = PanelColorType::Dark, ImVec4 color = {0.5f, 0.5f, 0.5f, 0.5f}) {
         GLFWwindow* window = init_the_panel(panelName, panelColor);
-       
+       colors = color;
 
         while(!glfwWindowShouldClose(window)) {
 
@@ -30,6 +32,7 @@ public:
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
+            
 
             task();
             
@@ -52,7 +55,7 @@ public:
     }
 
 private:
-
+inline static ImVec4 colors{};
 inline static bool set_version() {
 
     if (!glfwInit()){

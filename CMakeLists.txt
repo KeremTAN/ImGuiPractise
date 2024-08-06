@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.27)
 
 project(ImGUI)
 
+# set(CMAKE_CXX_STANDARD 20)
+
 file(GLOB sources "src/*.cpp")
 file(GLOB headers "includes/*.h")
 

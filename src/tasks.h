@@ -1,10 +1,35 @@
 #pragma once
 #include "../includes/Init.h"
 
+
+
+inline void task_5() {
+
+   //ImGui::ColorEdit3("set color", (float*)&colors); 
+   static std::string pathText{};
+
+   ImGui::Begin("File Selector");
+
+   if(ImGui::Button("Choose..")) {
+      ImGuiFileDialog::Instance()->OpenDialog("ChooseFileDlgKey", "Select", ".txt, .cpp");
+   }
+
+   if(ImGuiFileDialog::Instance()->Display("ChooseFileDlgKey")) {
+        if(ImGuiFileDialog::Instance()->IsOk()) {
+            std::string path { ImGuiFileDialog::Instance()->GetFilePathName() };
+            size_t ix { path.find_last_of('/') };
+            pathText = path.substr(ix+1);
+        }
+        ImGuiFileDialog::Instance()->Close();
+   }
+
+   ImGui::Text("Selected File's name is %s", pathText.c_str());
+   ImGui::End();
+}
+
 inline void task_4() {
     ImGui::Begin("Hotel");
     if(ImGui::TreeNode("Hotel Olala")) {
-        bool isMeal = false;
         ImGui::TextWrapped("Text Wrapped Ne?");
         ImGui::Separator(); // for line
 
@@ -44,35 +69,6 @@ inline void task_4() {
         ImGui::TreePop();
     } // Information
     ImGui::End();
-
-    // ImGui::Begin("Warning");
-    //     if (ImGui::TreeNode("Basic"))
-    //     {
-    //         ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
-    //         if (ImGui::BeginTabBar("MyTabBar", tab_bar_flags))
-    //         {
-    //             if (ImGui::BeginTabItem("Avocado"))
-    //             {
-    //                 ImGui::Text("This is the Avocado tab!\nblah blah blah blah blah");
-    //                 ImGui::EndTabItem();
-    //             }
-    //             if (ImGui::BeginTabItem("Broccoli"))
-    //             {
-    //                 ImGui::Text("This is the Broccoli tab!\nblah blah blah blah blah");
-    //                 ImGui::EndTabItem();
-    //             }
-    //             if (ImGui::BeginTabItem("Cucumber"))
-    //             {
-    //                 ImGui::Text("This is the Cucumber tab!\nblah blah blah blah blah");
-    //                 ImGui::EndTabItem();
-    //             }
-    //             ImGui::EndTabBar();
-    //         }
-    //         ImGui::Separator();
-    //         ImGui::TreePop();
-    //     }
-    // ImGui::End();
-    
 }
 
 inline void task_3() {
